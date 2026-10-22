@@ -10,6 +10,7 @@ Painel comercial responsivo feito com **React + Vite + Recharts**, com indicador
 ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white)
 ![Recharts](https://img.shields.io/badge/Recharts-2-22b5bf)
+![CI](https://github.com/LeonardoCarrilho/dashboard-vendas/actions/workflows/ci.yml/badge.svg)
 
 ## Design
 

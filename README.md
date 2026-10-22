@@ -1,5 +1,7 @@
 # Dashboard de Vendas
 
+Repositório: [github.com/LeonardoCarrilho/dashboard-vendas](https://github.com/LeonardoCarrilho/dashboard-vendas)
+
 Painel comercial responsivo feito com **React + Vite + Recharts**, com indicadores, gráfico de receita x meta, origem das vendas e tabela de pedidos recentes.
 
 ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)

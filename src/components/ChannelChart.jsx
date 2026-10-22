@@ -23,7 +23,7 @@ export default function ChannelChart({ data }) {
       </header>
 
       <div className="channel-body">
-        <div className="donut-wrap">
+        <div className="donut-wrap" aria-hidden="true" inert="">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -34,6 +34,7 @@ export default function ChannelChart({ data }) {
                 outerRadius={88}
                 paddingAngle={3}
                 stroke="none"
+                isAnimationActive={false}
               >
                 {data.map((entry) => (
                   <Cell key={entry.name} fill={entry.color} />

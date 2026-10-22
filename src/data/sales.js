@@ -17,10 +17,10 @@ export const monthly = [
 ];
 
 export const channels = [
-  { name: "Loja online", value: 46, color: "#c2410c" },
-  { name: "Marketplace", value: 27, color: "#e07d3a" },
-  { name: "Instagram", value: 17, color: "#f59e0b" },
-  { name: "Indicação", value: 10, color: "#f5d0b0" },
+  { name: "Loja online", value: 46, color: "#5eead4" },
+  { name: "Marketplace", value: 27, color: "#a78bfa" },
+  { name: "Instagram", value: 17, color: "#60a5fa" },
+  { name: "Indicação", value: 10, color: "#fbbf24" },
 ];
 
 export const recentOrders = [

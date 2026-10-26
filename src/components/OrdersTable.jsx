@@ -1,5 +1,26 @@
+import { useMemo, useState } from "react";
 import { formatCurrencyPrecise, statusStyles } from "../data/sales";
 import { buildOrdersCsv, csvFileName } from "../utils/csv";
+import { ORDER_SORT_LABELS, ariaSortFor, nextSort, sortOrders } from "../utils/orders";
+
+function SortHeader({ label, sortKey, sort, onSort }) {
+  const active = sort.key === sortKey;
+
+  return (
+    <th scope="col" aria-sort={ariaSortFor(sort, sortKey)}>
+      <button
+        type="button"
+        className={`sort-button${active ? " is-active" : ""}`}
+        onClick={() => onSort(sortKey)}
+      >
+        {label}
+        <span className="sort-icon" aria-hidden="true">
+          {active ? (sort.direction === "asc" ? "↑" : "↓") : "↕"}
+        </span>
+      </button>
+    </th>
+  );
+}
 
 function downloadCsv(content, filename) {
   const blob = new Blob([content], { type: "text/csv;charset=utf-8" });
@@ -15,10 +36,14 @@ function downloadCsv(content, filename) {
 }
 
 export default function OrdersTable({ orders = [], days, endDate }) {
+  const [sort, setSort] = useState({ key: "date", direction: "desc" });
+
+  const sortedOrders = useMemo(() => sortOrders(orders, sort), [orders, sort]);
+  const handleSort = (key) => setSort((current) => nextSort(current, key));
   const orderLabel = orders.length === 1 ? "pedido" : "pedidos";
 
   const handleExport = () => {
-    downloadCsv(buildOrdersCsv(orders), csvFileName(days, endDate));
+    downloadCsv(buildOrdersCsv(sortedOrders), csvFileName(days, endDate));
   };
 
   return (
@@ -50,30 +75,41 @@ export default function OrdersTable({ orders = [], days, endDate }) {
         </button>
       </header>
 
-      <div className="table-wrap">
+      <div
+        className="table-wrap"
+        role="region"
+        aria-label="Tabela de pedidos recentes"
+        tabIndex={0}
+      >
         <table>
           <caption className="sr-only">
             Pedidos dos últimos {days} dias com cliente, produto, valor, status e data.
+            Use os botões dos cabeçalhos para ordenar por cliente, valor ou data.
           </caption>
           <thead>
             <tr>
               <th scope="col">Pedido</th>
-              <th scope="col">Cliente</th>
+              <SortHeader
+                label="Cliente"
+                sortKey="customer"
+                sort={sort}
+                onSort={handleSort}
+              />
               <th scope="col">Produto</th>
-              <th scope="col">Valor</th>
+              <SortHeader label="Valor" sortKey="value" sort={sort} onSort={handleSort} />
               <th scope="col">Status</th>
-              <th scope="col">Data</th>
+              <SortHeader label="Data" sortKey="date" sort={sort} onSort={handleSort} />
             </tr>
           </thead>
           <tbody>
-            {orders.length === 0 ? (
+            {sortedOrders.length === 0 ? (
               <tr>
                 <td colSpan={6} className="table-empty">
                   Nenhum pedido no período selecionado.
                 </td>
               </tr>
             ) : (
-              orders.map((order) => (
+              sortedOrders.map((order) => (
                 <tr key={order.id}>
                   <td className="order-id">{order.id}</td>
                   <td>{order.customer}</td>
@@ -95,7 +131,9 @@ export default function OrdersTable({ orders = [], days, endDate }) {
       </div>
 
       <p className="export-note">
-        O CSV inclui os {orders.length} {orderLabel} do período selecionado.
+        O CSV inclui os {orders.length} {orderLabel} do período e a ordenação atual
+        ({ORDER_SORT_LABELS[sort.key]},{" "}
+        {sort.direction === "asc" ? "crescente" : "decrescente"}).
       </p>
     </section>
   );

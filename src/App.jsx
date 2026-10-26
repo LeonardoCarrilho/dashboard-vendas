@@ -4,37 +4,30 @@ import StatCard from "./components/StatCard";
 import RevenueChart from "./components/RevenueChart";
 import ChannelChart from "./components/ChannelChart";
 import OrdersTable from "./components/OrdersTable";
-import { channels, formatCurrency, monthly, recentOrders } from "./data/sales";
+import {
+  DATA_END_DATE,
+  DATA_UPDATED_ISO,
+  DATA_UPDATED_LABEL,
+  daily,
+  formatCurrency,
+  orders,
+} from "./data/sales";
+import { PERIODS, buildDashboardView } from "./utils/analytics";
 
-const sum = (items, key) => items.reduce((total, item) => total + item[key], 0);
-
-const percentChange = (current, previous) => {
-  if (!previous) return 0;
-  return ((current - previous) / previous) * 100;
-};
+const formatPercent = (value) =>
+  `${value.toLocaleString("pt-BR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })}%`;
 
 export default function App() {
-  const [period, setPeriod] = useState(6);
+  const [period, setPeriod] = useState(30);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const view = useMemo(() => {
-    const visible = monthly.slice(-period);
-    const last = monthly[monthly.length - 1];
-    const beforeLast = monthly[monthly.length - 2];
-    const revenue = sum(visible, "revenue");
-    const orders = sum(visible, "orders");
-    const ticket = orders ? revenue / orders : 0;
-
-    return {
-      visible,
-      revenue,
-      orders,
-      ticket,
-      revenueDelta: percentChange(last.revenue, beforeLast.revenue),
-      ordersDelta: percentChange(last.orders, beforeLast.orders),
-      goalReached: visible.filter((item) => item.revenue >= item.goal).length,
-    };
-  }, [period]);
+  const view = useMemo(
+    () => buildDashboardView({ daily, orders, days: period, endDate: DATA_END_DATE }),
+    [period]
+  );
 
   return (
     <div className="app">
@@ -56,25 +49,24 @@ export default function App() {
           <div className="topbar-title">
             <span className="topbar-eyebrow">Painel comercial</span>
             <h1>Visão geral</h1>
+            <p className="last-updated">
+              Última atualização:{" "}
+              <time dateTime={DATA_UPDATED_ISO}>{DATA_UPDATED_LABEL}</time>
+            </p>
           </div>
 
           <div className="period-switch" role="group" aria-label="Período">
-            <button
-              type="button"
-              className={period === 6 ? "is-active" : ""}
-              onClick={() => setPeriod(6)}
-              aria-pressed={period === 6}
-            >
-              6 meses
-            </button>
-            <button
-              type="button"
-              className={period === 12 ? "is-active" : ""}
-              onClick={() => setPeriod(12)}
-              aria-pressed={period === 12}
-            >
-              12 meses
-            </button>
+            {PERIODS.map((days) => (
+              <button
+                key={days}
+                type="button"
+                className={period === days ? "is-active" : ""}
+                onClick={() => setPeriod(days)}
+                aria-pressed={period === days}
+              >
+                {days} dias
+              </button>
+            ))}
           </div>
         </header>
 
@@ -83,8 +75,9 @@ export default function App() {
             <div>
               <h2 id="overview-title">Indicadores do período</h2>
               <p>
-                Últimos {period} meses · meta batida em {view.goalReached} de{" "}
-                {view.visible.length} meses
+                {view.isEmpty
+                  ? "Nenhum dado consolidado no período"
+                  : `Últimos ${period} dias · meta batida em ${view.kpis.goalReached} de ${view.kpis.days} dias`}
               </p>
             </div>
             <span className="live-badge">
@@ -93,44 +86,58 @@ export default function App() {
             </span>
           </div>
 
-          <div className="stats-grid">
-            <StatCard
-              icon="revenue"
-              label="Receita total"
-              value={formatCurrency(view.revenue)}
-              delta={view.revenueDelta}
-              note="vs. mês anterior"
-            />
-            <StatCard
-              icon="orders"
-              label="Pedidos"
-              value={view.orders.toLocaleString("pt-BR")}
-              delta={view.ordersDelta}
-              note="vs. mês anterior"
-            />
-            <StatCard
-              icon="ticket"
-              label="Ticket médio"
-              value={formatCurrency(view.ticket)}
-              note="média do período"
-            />
-            <StatCard
-              icon="conversion"
-              label="Conversão"
-              value="3,8%"
-              delta={0.4}
-              deltaLabel="p.p."
-              note="vs. mês anterior"
-            />
-          </div>
+          {view.isEmpty ? (
+            <div className="panel empty-state" role="status">
+              <span aria-hidden="true">📉</span>
+              <h3>Sem dados no período</h3>
+              <p>Escolha outro intervalo para ver indicadores, gráficos e pedidos.</p>
+            </div>
+          ) : (
+            <div className="stats-grid">
+              <StatCard
+                icon="revenue"
+                label="Receita total"
+                value={formatCurrency(view.kpis.revenue)}
+                delta={view.kpis.revenueDelta}
+                note="vs. período anterior"
+              />
+              <StatCard
+                icon="orders"
+                label="Pedidos"
+                value={view.kpis.orders.toLocaleString("pt-BR")}
+                delta={view.kpis.ordersDelta}
+                note="vs. período anterior"
+              />
+              <StatCard
+                icon="ticket"
+                label="Ticket médio"
+                value={formatCurrency(view.kpis.ticket)}
+                note="média do período"
+              />
+              <StatCard
+                icon="conversion"
+                label="Conversão"
+                value={formatPercent(view.kpis.conversion)}
+                delta={view.kpis.conversionDelta}
+                deltaLabel="p.p."
+                note="vs. período anterior"
+              />
+            </div>
+          )}
         </section>
 
-        <section className="charts-grid" aria-label="Gráficos">
-          <RevenueChart data={view.visible} />
-          <ChannelChart data={channels} />
-        </section>
+        {!view.isEmpty && (
+          <section className="charts-grid" aria-label="Gráficos">
+            <RevenueChart data={view.series} />
+            <ChannelChart data={view.channels} />
+          </section>
+        )}
 
-        <OrdersTable orders={recentOrders} />
+        <OrdersTable
+          orders={view.orders}
+          days={period}
+          endDate={view.endDate ?? DATA_END_DATE}
+        />
       </main>
 
       {menuOpen && (

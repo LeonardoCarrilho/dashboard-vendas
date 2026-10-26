@@ -16,18 +16,20 @@ Painel comercial responsivo feito com **React + Vite + Recharts**, com indicador
 
 Interface de analytics em tema escuro, com menta e violeta, tipografia Space Grotesk + IBM Plex Mono e cartões compactos. A intenção é parecer uma ferramenta de operação, não uma landing page.
 
-- Contraste e navegação por teclado revisados;
+- Contraste, foco visível e navegação por teclado revisados;
 - Gráficos com cores consistentes e animações desativadas para renderização estável;
 - Layout adaptado para desktop, tablet e celular.
 
 ## Funcionalidades
 
-- Filtro de período (6 ou 12 meses) que recalcula todos os indicadores
-- Cards de receita, pedidos, ticket médio e conversão
-- Gráfico de área de receita com linha de meta
-- Gráfico de rosca por canal de venda
-- Tabela de pedidos recentes com status
-- Exportação dos pedidos para CSV
+- Filtro de período (7, 30 ou 90 dias) que recalcula todos os indicadores
+- KPIs de receita, pedidos, ticket médio e conversão comparados ao período anterior
+- Última atualização dos dados exibida no topo do painel
+- Gráfico de área de receita com linha de meta (por dia até 30 dias, por semana em 90 dias)
+- Gráfico de rosca por canal de venda, recalculado conforme o período
+- Tabela de pedidos com ordenação por cliente, valor e data (`aria-sort` e `scope="col"`)
+- Exportação CSV do período ativo, com BOM UTF-8, separador `;` para o Excel pt-BR, escape de aspas e nome com o período
+- Estados vazios quando não há dados no período
 - Layout responsivo com menu lateral no mobile
 
 ## Como rodar
@@ -46,6 +48,14 @@ npm run build
 npm run preview
 ```
 
+## Testes
+
+Os testes usam **Vitest** e cobrem as funções puras de agregação, filtro por período, ordenação, formatação e geração do CSV.
+
+```bash
+npm test
+```
+
 ## Estrutura
 
 ```
@@ -57,7 +67,11 @@ src/
 │   ├── ChannelChart.jsx
 │   └── OrdersTable.jsx
 ├── data/
-│   └── sales.js        # dados simulados
+│   └── sales.js        # dados simulados (série diária e pedidos)
+├── utils/
+│   ├── analytics.js    # filtro por período, KPIs, canais e série do gráfico
+│   ├── csv.js          # montagem e nome do arquivo CSV
+│   └── orders.js       # ordenação da tabela
 ├── App.jsx
 ├── main.jsx
 └── styles.css
@@ -65,10 +79,17 @@ src/
 
 ## Dados
 
-Os números em `src/data/sales.js` são simulados para demonstração. Para usar dados reais, substitua esse arquivo por uma chamada à sua API (fetch/axios) e mantenha o mesmo formato:
+Os números em `src/data/sales.js` são simulados para demonstração. A série diária cobre 180 dias e é derivada dos totais mensais, o que permite comparar cada período com a janela anterior. Para usar dados reais, substitua esse arquivo por uma chamada à sua API (fetch/axios) e mantenha o mesmo formato:
 
 ```js
-{ month: "Jan", revenue: 42800, orders: 312, goal: 40000 }
+{
+  date: "2026-10-22",
+  revenue: 2200,
+  orders: 15,
+  visits: 410,
+  goal: 1900,
+  channels: { loja: 1012, marketplace: 594, instagram: 374, indicacao: 220 }
+}
 ```
 
 ## Deploy

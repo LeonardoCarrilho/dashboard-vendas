@@ -53,31 +53,31 @@ export default function RevenueChart({ data = [] }) {
             <ComposedChart data={data} margin={{ top: 12, right: 8, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#5eead4" stopOpacity={0.35} />
-                  <stop offset="100%" stopColor="#5eead4" stopOpacity={0} />
+                  <stop offset="0%" stopColor="#6255db" stopOpacity={0.35} />
+                  <stop offset="100%" stopColor="#6255db" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#22304d" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e0e5ef" />
               <XAxis
                 dataKey="label"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#8fa1c1", fontSize: 12 }}
+                tick={{ fill: "#5e6f89", fontSize: 12 }}
                 dy={8}
               />
               <YAxis
                 width={48}
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#8fa1c1", fontSize: 12 }}
+                tick={{ fill: "#5e6f89", fontSize: 12 }}
                 tickFormatter={(value) => `${Math.round(value / 1000)}k`}
               />
-              <Tooltip content={<ChartTooltip />} cursor={{ stroke: "#2a3c60" }} />
+              <Tooltip content={<ChartTooltip />} cursor={{ stroke: "#d3d9e7" }} />
               <Area
                 type="monotone"
                 dataKey="revenue"
                 name="Receita"
-                stroke="#5eead4"
+                stroke="#6255db"
                 strokeWidth={2.5}
                 fill="url(#revenueFill)"
                 isAnimationActive={false}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 const NAV = [
   { href: "#overview", label: "Visão geral", icon: "grid" },
   { href: "#channels", label: "Canais", icon: "pie" },
@@ -32,6 +33,12 @@ function NavIcon({ name }) {
 }
 
 export default function Sidebar({ open, onClose }) {
+  const [active, setActive] = useState(() => window.location.hash || "#overview");
+  useEffect(() => {
+    const sync = () => setActive(window.location.hash || "#overview");
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
   return (
     <aside className={`sidebar ${open ? "is-open" : ""}`} aria-label="Menu lateral">
       <a className="brand" href="#overview" onClick={onClose}>
@@ -48,10 +55,11 @@ export default function Sidebar({ open, onClose }) {
 
       <nav className="side-nav">
         <span className="side-label">Análise</span>
-        {NAV.map((item, index) => (
+        {NAV.map((item) => (
           <a
             key={item.href}
-            className={index === 0 ? "is-active" : ""}
+            className={active === item.href ? "is-active" : ""}
+            aria-current={active === item.href ? "location" : undefined}
             href={item.href}
             onClick={onClose}
           >

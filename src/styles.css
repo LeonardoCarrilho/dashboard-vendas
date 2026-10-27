@@ -1234,3 +1234,16 @@ tbody tr:hover {
   font-size: 0.8rem;
   color: var(--muted);
 }
+
+
+/* Console comercial: grade densa e hierarquia dos indicadores. */
+.main { max-width: 1800px; }
+.topbar { border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+.topbar-title h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; }
+.stat-card { border-radius: 4px; box-shadow: none; background: var(--panel); }
+.stat-value { font-variant-numeric: tabular-nums; letter-spacing: -0.05em; }
+.stats-grid { gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.stats-grid .stat-card { border: 0; }
+.panel { border-radius: 6px; box-shadow: none; }
+.sidebar { border-right: 1px solid var(--line); }
+.section-heading h2 { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }

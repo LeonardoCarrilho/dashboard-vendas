@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import StatCard from "./components/StatCard";
 import RevenueChart from "./components/RevenueChart";
@@ -24,6 +24,38 @@ export default function App() {
   const [period, setPeriod] = useState(30);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const menu = document.getElementById("dashboard-menu");
+    const trigger = document.querySelector(".menu-button");
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    menu.querySelector("button, a").focus();
+    const onKey = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key !== "Tab") return;
+      const links = [...menu.querySelectorAll("a, button")].filter(el => el.getClientRects().length);
+      const first = links[0], last = links[links.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false); };
+    document.addEventListener("keydown", onKey);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", closeOnDesktop);
+      if (!desktop.matches) trigger.focus();
+    };
+  }, [menuOpen]);
+
   const view = useMemo(
     () => buildDashboardView({ daily, orders, days: period, endDate: DATA_END_DATE }),
     [period]
@@ -40,6 +72,8 @@ export default function App() {
             className="menu-button"
             onClick={() => setMenuOpen(true)}
             aria-label="Abrir menu"
+            aria-controls="dashboard-menu"
+            aria-expanded={menuOpen}
           >
             <span />
             <span />

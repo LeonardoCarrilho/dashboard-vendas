@@ -105,3 +105,9 @@ O projeto é uma SPA estática e também pode ser publicado na Vercel ou Netlify
 ## Licença
 
 Uso livre para estudos e portfólio.
+
+## Contribuição e segurança
+
+Leia [AGENTS.md](AGENTS.md) antes de alterar o projeto. Toda tarefa exige issue e PR associado, com validação antes da publicação.
+
+Configuração de produção, observabilidade e limites da hospedagem: [docs/SECURITY.md](docs/SECURITY.md).

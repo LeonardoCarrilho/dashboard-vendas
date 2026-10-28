@@ -3,7 +3,12 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   base: "./",
-  plugins: [react()],
+  plugins: [react(), {
+    name: "development-csp",
+    apply: "serve",
+    // O preâmbulo de HMR é inline; o build de produção mantém a CSP estrita.
+    transformIndexHtml(html) { return html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, ""); },
+  }],
   test: {
     environment: "node",
     include: ["src/**/*.test.{js,jsx}"],
@@ -12,9 +17,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 650,
     rollupOptions: {
       output: {
-        manualChunks: {
-          charts: ["recharts"],
-        },
+        manualChunks(id) { if (id.includes("recharts")) return "charts"; },
       },
     },
   },

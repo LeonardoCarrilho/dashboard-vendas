@@ -1,0 +1,47 @@
+/* Sales journal: compact metrics, ledger rules and a burnt-orange accent. */
+:root { --bg:#f3f1eb; --panel:#fffefa; --panel-soft:#f0eee7; --ink:#292d32; --muted:#64676c; --line:#d4d3ca; --brand:#b44825; --brand-dark:#8f3319; --accent:#8c928a; --focus-ring:#b44825; }
+body { background:var(--bg); }
+.main { padding-top:34px; }
+.sidebar { background:#262b31; border:0; padding:28px 18px; }
+.brand-mark { background:#d36943; color:#fff; border-radius:0; width:34px; height:34px; }
+.brand strong { font-family:Georgia,serif; font-size:1.6rem; font-weight:400; }
+.side-nav a { border-radius:0; color:#d9dbd7; }
+.side-nav a.is-active { background:#f3f1eb; color:#292d32; border-left:4px solid #b44825; }
+.side-card { background:transparent; border:0; border-top:1px solid #555c62; border-radius:0; padding:20px 6px; }
+.side-card-icon { background:none; color:#e69a77; }
+.topbar { border-bottom:2px solid #292d32; padding-bottom:26px; align-items:end; }
+.topbar h1 { font-family:Georgia,serif; font-weight:400; font-size:clamp(2.5rem,4.3vw,4.2rem); letter-spacing:-.055em; }
+.topbar-eyebrow { color:#b44825; font-size:.68rem; }
+.period-switch { border-radius:0; padding:0; border-color:#aaa99f; background:none; }
+.period-switch button { border-radius:0; min-height:42px; font-family:monospace; }
+.period-switch button.is-active { background:#292d32; box-shadow:none; }
+.stats-grid { gap:0; border-block:1px solid #aaa99f; margin-bottom:30px; }
+.stat-card { border:0; border-right:1px solid #cccbbf; border-radius:0; box-shadow:none; background:none; padding:22px; }
+.stat-card:last-child { border-right:0; }
+.stat-card:first-child { color:#292d32; background:#e8e2d6; border-color:#cccbbf; --muted:#64676c; }
+.stat-top { margin-bottom:16px; }
+.stat-icon { border-radius:0; background:none!important; color:#7b7f7b; width:25px; height:25px; }
+.stat-card:first-child .stat-icon { color:#b44825; }
+.stat-value { font-family:Georgia,serif; font-weight:400; font-size:clamp(1.6rem,2.8vw,2.65rem); letter-spacing:-.04em; }
+.stat-card:first-child .stat-note { color:#64676c; }
+.stat-label { font-family:monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; }
+.stat-note { font-size:.7rem; }
+.delta,.live-badge { border-radius:0; font-family:monospace; }
+.live-badge { background:none; border:0; color:#64676c; }
+.panel { border:1px solid #d4d3ca; border-top:2px solid #292d32; border-radius:0; box-shadow:none; }
+.panel-head h2 { font-family:Georgia,serif; font-weight:400; font-size:1.4rem; }
+.panel-head { padding:22px; }
+.charts-grid { grid-template-columns:minmax(0,1.8fr) minmax(0,1fr); gap:24px; }
+.legend-revenue { background:#b44825; }
+.legend-goal { border-color:#8c928a; }
+.channel-list li { padding-block:12px; }
+.channel-dot { border-radius:0; }
+.ghost-button,.chart-tooltip { border-radius:0; }
+th { text-transform:uppercase; font-family:monospace; letter-spacing:.06em; }
+td { font-size:.82rem; }
+.status { border-radius:2px; }
+@media(max-width:1100px) { .charts-grid { grid-template-columns:minmax(0,1fr); } }
+@media(max-width:640px) { .main { padding-top:24px; } .topbar h1 { font-size:2.7rem; } .stat-card { padding:18px 12px; border-bottom:1px solid #cccbbf; } .stat-card:nth-child(2n) { border-right:0; } .stat-value { font-size:clamp(1.5rem,6vw,2rem); } .stat-top { margin-bottom:12px; } .stats-grid { gap:0; } .topbar-title { min-width:0; } .menu-button { border-radius:0; } }
+
+.stats-grid .stat-card .stat-icon { color:#5b705b; }
+.stats-grid .stat-card:first-child .stat-icon { color:#b44825; }

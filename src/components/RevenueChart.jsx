@@ -53,8 +53,8 @@ export default function RevenueChart({ data = [] }) {
             <ComposedChart data={data} margin={{ top: 12, right: 8, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#6255db" stopOpacity={0.35} />
-                  <stop offset="100%" stopColor="#6255db" stopOpacity={0} />
+                  <stop offset="0%" stopColor="#b44825" stopOpacity={0.35} />
+                  <stop offset="100%" stopColor="#b44825" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e0e5ef" />
@@ -77,7 +77,7 @@ export default function RevenueChart({ data = [] }) {
                 type="monotone"
                 dataKey="revenue"
                 name="Receita"
-                stroke="#6255db"
+                stroke="#b44825"
                 strokeWidth={2.5}
                 fill="url(#revenueFill)"
                 isAnimationActive={false}
@@ -86,7 +86,7 @@ export default function RevenueChart({ data = [] }) {
                 type="monotone"
                 dataKey="goal"
                 name="Meta"
-                stroke="#a78bfa"
+                stroke="#8c928a"
                 strokeDasharray="5 5"
                 strokeWidth={2}
                 dot={false}

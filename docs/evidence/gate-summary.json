@@ -1,0 +1,486 @@
+{
+  "status": "open",
+  "round": 3,
+  "max": 3,
+  "open": [
+    {
+      "check": "hero-fill",
+      "where": "section#overview \"Indicadores do período\"",
+      "msg": "the next section shows on the first screen: it starts at 193px on a 900px screen (the hero ends at 163px)",
+      "fix": "let the hero fill the first screen alone (min-height: 100svh, less above it): nothing of the next section on load",
+      "widths": [
+        1440,
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "hero-fill"
+      ],
+      "wheres": [
+        "section#overview \"Indicadores do período\""
+      ]
+    },
+    {
+      "check": "flush",
+      "where": "section#overview > div.stats-grid \"0,5% Receita total R$ 67.200 vs. período\"",
+      "msg": "its last line sits 0px above the lower edge of section#overview, where the ground changes to section.charts-grid",
+      "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+      "widths": [
+        1440,
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "flush"
+      ],
+      "wheres": [
+        "section#overview > div.stats-grid \"0,5% Receita total R$ 67.200 vs. período\""
+      ]
+    },
+    {
+      "check": "flush",
+      "where": "main#main-content > section.charts-grid > article.panel.chart-panel:nth-of-type(1) \"Receita x meta R$ 67.200 de R$ 56.098 pl\"",
+      "msg": "its first line sits 0px under the top edge of section.charts-grid, where the ground changes",
+      "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+      "widths": [
+        1440,
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "flush"
+      ],
+      "wheres": [
+        "main#main-content > section.charts-grid > article.panel.chart-panel:nth-of-type(1) \"Receita x meta R$ 67.200 de R$ 56.098 pl\""
+      ]
+    },
+    {
+      "check": "cta",
+      "where": "main#main-content > header.topbar",
+      "msg": "the hero has no button (the nav's does not count)",
+      "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+      "widths": [
+        1440,
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "cta"
+      ],
+      "wheres": [
+        "main#main-content > header.topbar"
+      ]
+    },
+    {
+      "check": "copy-headline",
+      "where": "main#main-content > header.topbar > div.topbar-title > h1 \"Visão geral\"",
+      "msg": "\"Visão geral\" does not name what is sold (painel comercial, painel, comercial, from flags)",
+      "fix": "put the category noun in the h1 (and who it is for, or where), in 2 to 8 words",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "copy-headline"
+      ],
+      "wheres": [
+        "main#main-content > header.topbar > div.topbar-title > h1 \"Visão geral\""
+      ]
+    },
+    {
+      "check": "hero-screen",
+      "where": "main#main-content > header.topbar \"Painel comercialVisão geralÚltima atuali\"",
+      "msg": "the hero ends at 163px on a 900px screen, 737px above the fold: it ends at the fold, 1px either way (SR-1)",
+      "fix": "make the hero exactly one screen (height: 100svh, its content fitted inside), never taller or shorter",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "hero-screen"
+      ],
+      "wheres": [
+        "main#main-content > header.topbar \"Painel comercialVisão geralÚltima atuali\""
+      ]
+    },
+    {
+      "check": "hero-screen",
+      "where": "section#overview \"Indicadores do períodoÚltimos 30 dias · \"",
+      "msg": "707px of the next section shows on the first screen (from 193px on a 900px screen): nothing below the hero shows at load (SR-1)",
+      "fix": "end the hero at the fold so nothing of the next section shows at load (hero height: 100svh)",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "hero-screen"
+      ],
+      "wheres": [
+        "section#overview \"Indicadores do períodoÚltimos 30 dias · \""
+      ]
+    },
+    {
+      "check": "section-height",
+      "where": "section#overview \"Indicadores do períodoÚltimos 30 dias · \"",
+      "msg": "the section is 262px tall (0.3 screens), 638px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+      "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "section-height"
+      ],
+      "wheres": [
+        "section#overview \"Indicadores do períodoÚltimos 30 dias · \""
+      ]
+    },
+    {
+      "check": "section-height",
+      "where": "main#main-content > section.charts-grid \"Receita x metaR$ 67.200 de R$ 56.098 pla\"",
+      "msg": "the section is 442px tall (0.5 screens), 458px short of one screen (900px): every section after the hero is one screen or two, 2px either way (SR-2)",
+      "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "section-height"
+      ],
+      "wheres": [
+        "main#main-content > section.charts-grid \"Receita x metaR$ 67.200 de R$ 56.098 pla\""
+      ]
+    },
+    {
+      "check": "section-height",
+      "where": "section#orders \"Pedidos recentesÚltimas movimentações da\"",
+      "msg": "the section is 1455px tall (1.6 screens), 345px short of two screens (1800px): every section after the hero is one screen or two, 2px either way (SR-2)",
+      "fix": "set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "section-height"
+      ],
+      "wheres": [
+        "section#orders \"Pedidos recentesÚltimas movimentações da\""
+      ]
+    },
+    {
+      "check": "one-section",
+      "where": "h2#orders-title \"Pedidos recentes\"",
+      "msg": "the screen at scroll 479px (the top of section 3) shows 434px of section 4 and the heading of section 4 whole and the content of 2 sections, over 24px each beside section 3: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+      "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "one-section"
+      ],
+      "wheres": [
+        "h2#orders-title \"Pedidos recentes\""
+      ]
+    },
+    {
+      "check": "one-section",
+      "where": "main#main-content > header.topbar > div.topbar-title > h1 \"Visão geral\"",
+      "msg": "the screen at scroll 0px (stride 0) shows 262px of section 2 and the heading of section 1 whole and the content of 3 sections, over 24px each beside section 3: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)",
+      "fix": "make each section exactly one screen or two, so a screen shows one section and no neighbour peeks",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "one-section"
+      ],
+      "wheres": [
+        "main#main-content > header.topbar > div.topbar-title > h1 \"Visão geral\"",
+        "main#main-content > header.topbar \"Painel comercialVisão geralÚltima atuali\""
+      ]
+    },
+    {
+      "check": "one-heading",
+      "where": "article#channels > header.panel-head > div > h2 \"Origem das vendas\"",
+      "msg": "the section holds 2 h2 headings: one per section, first in its .wrap (SR-5)",
+      "fix": "give each section one h2, first in its .wrap, and the hero only its h1",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "one-heading"
+      ],
+      "wheres": [
+        "article#channels > header.panel-head > div > h2 \"Origem das vendas\""
+      ]
+    },
+    {
+      "check": "one-heading",
+      "where": "article.panel.chart-panel:nth-of-type(1) > header.panel-head > div:nth-of-type(1) > h2 \"Receita x meta\"",
+      "msg": "headings of two sections show whole on one screen at 11 of 32 scroll positions (34.4%; at scroll 0, 50, 100, 150px), here with \"Indicadores do período\": at most 3% on a desktop (SR-5)",
+      "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "one-heading"
+      ],
+      "wheres": [
+        "article.panel.chart-panel:nth-of-type(1) > header.panel-head > div:nth-of-type(1) > h2 \"Receita x meta\""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "main#main-content > header.topbar \"Painel comercialVisão geralÚltima atuali\"",
+      "msg": "the content of section 1 runs 280px from the left and 50px from the right (read from its outermost blocks: no .wrap): 280 and 50px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
+      "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "main#main-content > header.topbar \"Painel comercialVisão geralÚltima atuali\""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "section#overview \"Indicadores do períodoÚltimos 30 dias · \"",
+      "msg": "the content of section 2 runs 280px from the left and 50px from the right (read from its outermost blocks: no .wrap): 280 and 50px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (SR-6)",
+      "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "section#overview \"Indicadores do períodoÚltimos 30 dias · \""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "main#main-content > section.charts-grid \"Receita x metaR$ 67.200 de R$ 56.098 pla\"",
+      "msg": "the content of section 3 runs 280px from the left and 50px from the right (read from its outermost blocks: no .wrap): 280 and 50px are not one margin; the margin is 64-120px at 1440px (one container, equal margins, 2px either way) (and 1 more like it: \"Pedidos recentesÚltimas \") (SR-6)",
+      "fix": "use one container on every section and the nav (.wrap): one margin left and right, 64-120px on a desktop, 16-24px on a phone",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "main#main-content > section.charts-grid \"Receita x metaR$ 67.200 de R$ 56.098 pla\""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "div#root \"Pular para o conteúdo×Vendaspainel comer\"",
+      "msg": "a <div> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (SR-6)",
+      "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "div#root \"Pular para o conteúdo×Vendaspainel comer\""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "article#channels > header.panel-head > div > h2 \"Origem das vendas\"",
+      "msg": "the h2 starts 747px right of the container's left: every h1 and h2 starts on it, 2px either way (SR-6)",
+      "fix": "start the text on the container's left, or on the one split line every split shares",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "article#channels > header.panel-head > div > h2 \"Origem das vendas\""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "article.panel.chart-panel:nth-of-type(1) > header.panel-head > div:nth-of-type(1) > h2 \"Receita x meta\"",
+      "msg": "the h2 starts 25px right of the container's left: every h1 and h2 starts on it, 2px either way (and 2 more like it: x 304, \"Pedidos recentes\") (SR-6)",
+      "fix": "start the text on the container's left, or on the one split line every split shares",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "article.panel.chart-panel:nth-of-type(1) > header.panel-head > div:nth-of-type(1) > h2 \"Receita x meta\""
+      ]
+    },
+    {
+      "check": "container-edges",
+      "where": "main#main-content > section.charts-grid > article.panel.chart-panel:nth-of-type(1) \"Receita x metaR$ 67.200 de R$ 56.098 pla\"",
+      "msg": "a box over half the container wide runs 280-978px, not on the container's lines at 280-1390px (SR-6)",
+      "fix": "run the picture or box from the container's left line to its right line, or put it in a row or a split",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "main#main-content > section.charts-grid > article.panel.chart-panel:nth-of-type(1) \"Receita x metaR$ 67.200 de R$ 56.098 pla\""
+      ]
+    },
+    {
+      "check": "flush",
+      "where": "article#channels \"Origem das vendas Participação por canal\"",
+      "msg": "its last line sits 0px above the lower edge of section.charts-grid, where the ground changes to section#orders",
+      "fix": "give the section its padding at the edge where the ground changes (the closing call keeps a clear gap above the footer)",
+      "widths": [
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "flush"
+      ],
+      "wheres": [
+        "article#channels \"Origem das vendas Participação por canal\""
+      ]
+    },
+    {
+      "check": "no-visual",
+      "where": "section#overview \"Indicadores do período\"",
+      "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+      "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+      "widths": [
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "no-visual"
+      ],
+      "wheres": [
+        "section#overview \"Indicadores do período\""
+      ]
+    },
+    {
+      "check": "container",
+      "where": "page",
+      "msg": "no .wrap",
+      "fix": "put the content in one .wrap",
+      "widths": [
+        1440,
+        390
+      ],
+      "from": "layout",
+      "ids": [
+        "container"
+      ],
+      "wheres": [
+        "page"
+      ]
+    }
+  ],
+  "waived": [
+    {
+      "check": "no-visual",
+      "where": "section#orders \"Pedidos recentes\"",
+      "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+      "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "no-visual"
+      ],
+      "wheres": [
+        "section#orders \"Pedidos recentes\""
+      ],
+      "reason": "This section is the real sortable orders table with CSV export; its operational UI is the content, not a marketing feature requiring a picture."
+    },
+    {
+      "check": "cta",
+      "where": "section#overview > div.stats-grid > article.stat-card:nth-of-type(1) \"0,5% Receita total R$ 67.200 vs. período\"",
+      "msg": "1 priced card with no action in or under it",
+      "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+      "widths": [
+        1440,
+        390
+      ],
+      "from": "consistency",
+      "ids": [
+        "cta"
+      ],
+      "wheres": [
+        "section#overview > div.stats-grid > article.stat-card:nth-of-type(1) \"0,5% Receita total R$ 67.200 vs. período\""
+      ],
+      "reason": "The revenue figure is a read-only KPI of existing demonstration transactions, not a priced product card that needs a purchase action."
+    },
+    {
+      "check": "heading-scale",
+      "where": "section#overview > div.stats-grid > article.stat-card:nth-of-type(2) > strong.stat-value \"450\"",
+      "msg": "the figure \"450\" is set at 31.7px, larger than the section headings (h2 16px); 1 more like it",
+      "fix": "set figures at the h2 size or under: a stat reads as data, not as the heading",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "heading-scale"
+      ],
+      "wheres": [
+        "section#overview > div.stats-grid > article.stat-card:nth-of-type(2) > strong.stat-value \"450\""
+      ],
+      "reason": "Revenue and order counts are primary dashboard figures, not headings. Their visual emphasis is intentional while the semantic h1/h2 order remains intact."
+    },
+    {
+      "check": "moment-none",
+      "where": "(the page)",
+      "msg": "a software page (--type) deals no moment: every kind carries one, two on a long page (moments.md)",
+      "fix": "deal one (moments.mjs pick --page software) and mount it in its own section",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "moment-none"
+      ],
+      "wheres": [
+        "(the page)"
+      ],
+      "reason": "A recurring reporting workspace uses filters and charts rather than a marketing scroll effect; adding a decorative moment would interrupt data comparison."
+    },
+    {
+      "check": "container-edges",
+      "where": "span#recharts_measurement_span \"0k\"",
+      "msg": "a <span> at the top of the page, outside header.nav, main, footer.closing and nav.actionbar (and 4 more like it: \"Painel comercialVisão ge\", \"Indicadores do períodoÚl\", \"Receita x metaR$ 67.200 \") (SR-6)",
+      "fix": "build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing",
+      "widths": [
+        1440
+      ],
+      "from": "consistency",
+      "ids": [
+        "container-edges"
+      ],
+      "wheres": [
+        "span#recharts_measurement_span \"0k\""
+      ],
+      "reason": "Recharts creates this text-measurement node to lay out chart labels. It is library infrastructure, not an extra visible page section."
+    }
+  ],
+  "warnCount": 19
+}

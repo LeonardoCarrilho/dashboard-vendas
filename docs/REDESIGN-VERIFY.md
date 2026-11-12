@@ -20,7 +20,7 @@ A revisão posterior compactou os indicadores móveis em duas colunas e acrescen
 | Medida observada | Antes (`main`) | Depois (branch do PR) |
 | --- | --- | --- |
 | Captura desktop, relatório completo | 1440 × 2041 px | 1440 × 2456 px |
-| Captura móvel do relatório | Não capturada | 390 px de largura, página completa |
+| Captura móvel do relatório | Não capturada | 390 × 3080 px |
 | Larguras verificadas por testes | Não medidas nesta rodada | 320, 390, 768 e 1440 px |
 | Altura da faixa de indicadores em 320 / 390 px | Não medida no baseline | 265 / 275 px |
 | Testes do baseline | Não executados nesta comparação | Resultado da implementação listado acima |
@@ -33,6 +33,10 @@ A revisão posterior compactou os indicadores móveis em duas colunas e acrescen
 
 ## Checker visual
 
-O checker isolado de layout terminou com erro interno (`r.sections is not iterable`); não foi repetido nem considerado aprovado. O gate completo permanece pendente. Não há alegação de PASS visual.
+O checker isolado de layout terminou com erro interno (`r.sections is not iterable`); não foi repetido nem considerado aprovado. O gate completo encontrou 33 achados na primeira rodada, incluindo quatro controles com foco de contraste insuficiente na navegação escura (2,26:1). A borda de foco branca corrigiu esses quatro achados; o segundo gate caiu para 29 e os cinco testes relevantes de responsividade e teclado passaram novamente.
+
+Resultado final: `GATE: OPEN 24 (rounds used up)`, com cinco justificativas específicas, sem alegação de PASS. As exceções cobrem KPI confundido com preço de produto, tabela classificada como seção sem imagem, tamanho intencional dos números, ausência de efeito de rolagem e elemento de medição do Recharts. O [registro detalhado](evidence/gate-summary.json) contém cada motivo e achado aberto.
+
+Os 24 achados remanescentes tratam de hero, seções de uma tela inteira, CTA de marketing, título de categoria, estrutura/posicionamento de headings e containers, espaçamento nas bordas das seções e indicadores sem imagem decorativa. A leitura conjunta de indicadores e gráficos, a navegação lateral e a tabela foram mantidas. Nenhum checker foi alterado.
 
 A direção usa o próprio relatório como elemento visual. Tipografia local e superfícies simples evitam dependências externas. Formulários, tabelas e gráficos continuam juntos para permitir comparação; efeitos e seções de marketing não foram inseridos no fluxo operacional. Logs, perfis e capturas extensas ficam em `.taste-skill/`, fora do Git.

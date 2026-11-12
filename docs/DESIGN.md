@@ -1,11 +1,9 @@
 # Direção visual
 
-Painel analítico de leitura densa: métricas tipográficas, divisórias precisas, hierarquia de relatório e acento laranja.
+Painel comercial com leitura de relatório, fundo de papel e acento laranja. Os indicadores compartilham uma faixa; receita e meta continuam no mesmo gráfico, com linha tracejada para a meta. Os canais usam cores distintas e legenda com valores.
 
-A direção escolhida é autoral e editorial: tipografia marcante, composições assimétricas e identidade própria para este projeto. Preserve a relação entre o conteúdo e sua apresentação ao criar novas telas.
+`src/editorial.css` concentra a apresentação. Use tipografia local, números tabulares, bordas discretas e raios de 4 a 8 px. Mantenha filtros de período, ordenação e exportação visíveis. A tabela preserva todas as colunas e oferece rolagem horizontal dentro de sua própria região no celular.
 
-A camada editorial.css complementa os estilos funcionais e é carregada por último. Use as cores, espaçamentos e tipos definidos nela; evite introduzir estilos de outro projeto sem uma razão de uso.
+No menu móvel, preserve fechamento por Escape, contenção e retorno de foco. Revise desktop e celular, inclusive pedidos abaixo da primeira dobra, nas larguras de 320, 390, 768 e 1440 px. Garanta foco visível, controles de pelo menos 44 px e respeito à preferência por movimento reduzido.
 
-Antes de enviar mudanças visuais, confira desktop e celular com capturas reais, incluindo as seções abaixo da primeira dobra. Valide larguras de 320, 390, 768 e 1440 px, foco visível, teclado, contraste, formulários e preferência por movimento reduzido. Preserve o tema escuro quando disponível.
-
-Mudanças visuais seguem o mesmo fluxo: issue, branch, testes, commit e PR com referência à issue. Deploy depende dos checks e da integração do PR.
+Os valores são os dados de demonstração existentes. A apresentação não altera cálculos, filtros, CSV ou integrações. A rodada atual referencia a issue #6 e será revisada no PR existente antes de qualquer publicação.

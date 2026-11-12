@@ -76,8 +76,8 @@ export default function Sidebar({ open, onClose }) {
             <path d="M12 3v18M3 12h18" />
           </svg>
         </span>
-        <strong>Conecte seus dados</strong>
-        <p>Este painel usa dados simulados. Troque por uma API quando quiser.</p>
+        <strong>Sobre os dados</strong>
+        <p>Dados simulados para consultar indicadores, canais e pedidos.</p>
       </div>
 
       <div className="side-foot">

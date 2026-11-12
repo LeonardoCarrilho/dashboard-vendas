@@ -63,9 +63,10 @@ export default function App() {
 
   return (
     <div className="app">
+      <a className="skip-link" href="#main-content">Pular para o conteúdo</a>
       <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      <main className="main">
+      <main className="main" id="main-content" tabIndex={-1}>
         <header className="topbar">
           <button
             type="button"

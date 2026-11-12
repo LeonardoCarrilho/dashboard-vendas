@@ -1009,6 +1009,10 @@ tbody tr:hover {
 	width: 44px;
 	height: 44px;
 }
+.sidebar :focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 3px;
+}
 .side-nav a.is-active {
 	box-shadow: none;
 }

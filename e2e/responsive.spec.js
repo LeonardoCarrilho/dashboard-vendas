@@ -20,6 +20,16 @@ for (const width of [320, 390, 768, 1440]) {
       };
     });
     expect(measurements.scroll, "a página não deve exigir rolagem horizontal").toBeLessThanOrEqual(measurements.width + 1);
+    if (width <= 390) {
+      const metrics = await page.locator(".stats-grid").evaluate(el => ({
+        height: el.getBoundingClientRect().height,
+        clipped: [...el.querySelectorAll(".stat-value")].some(value => value.scrollWidth > value.clientWidth + 1)
+      }));
+      console.log(`Indicadores em ${width}px: ${metrics.height}px de altura; valores cortados: ${metrics.clipped}`);
+      expect(metrics.height, "os indicadores devem permitir alcançar os gráficos rapidamente").toBeLessThan(360);
+      expect(metrics.clipped, "os valores completos precisam caber nos indicadores").toBe(false);
+      await expect(page.getByText("Deslize para ver todas as colunas.")).toBeVisible();
+    }
     for (const field of measurements.fields) {
       expect(field.left, field.name).toBeGreaterThanOrEqual(-1);
       expect(field.right, field.name).toBeLessThanOrEqual(width + 1);

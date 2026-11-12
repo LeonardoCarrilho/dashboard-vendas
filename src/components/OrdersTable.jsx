@@ -75,6 +75,7 @@ export default function OrdersTable({ orders = [], days, endDate }) {
         </button>
       </header>
 
+      <p className="table-scroll-hint">Deslize para ver todas as colunas.</p>
       <div
         className="table-wrap"
         role="region"

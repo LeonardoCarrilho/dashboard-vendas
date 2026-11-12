@@ -17,10 +17,10 @@ export const monthly = [
 ];
 
 export const channelMeta = [
-  { key: "loja", name: "Loja online", share: 0.46, color: "#5eead4" },
-  { key: "marketplace", name: "Marketplace", share: 0.27, color: "#a78bfa" },
-  { key: "instagram", name: "Instagram", share: 0.17, color: "#60a5fa" },
-  { key: "indicacao", name: "Indicação", share: 0.1, color: "#fbbf24" },
+  { key: "loja", name: "Loja online", share: 0.46, color: "#b44825" },
+  { key: "marketplace", name: "Marketplace", share: 0.27, color: "#5b705b" },
+  { key: "instagram", name: "Instagram", share: 0.17, color: "#71818b" },
+  { key: "indicacao", name: "Indicação", share: 0.1, color: "#b79d62" },
 ];
 
 // Último dia com dados e horário da consolidação.

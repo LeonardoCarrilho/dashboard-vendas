@@ -40,7 +40,8 @@ export default function Sidebar({ open, onClose }) {
     return () => window.removeEventListener("hashchange", sync);
   }, []);
   return (
-    <aside className={`sidebar ${open ? "is-open" : ""}`} aria-label="Menu lateral">
+    <aside className={`sidebar ${open ? "is-open" : ""}`} id="dashboard-menu" aria-label="Menu lateral">
+      <button type="button" className="sidebar-close" onClick={onClose} aria-label="Fechar navegação">×</button>
       <a className="brand" href="#overview" onClick={onClose}>
         <span className="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24">
@@ -75,8 +76,8 @@ export default function Sidebar({ open, onClose }) {
             <path d="M12 3v18M3 12h18" />
           </svg>
         </span>
-        <strong>Conecte seus dados</strong>
-        <p>Este painel usa dados simulados. Troque por uma API quando quiser.</p>
+        <strong>Sobre os dados</strong>
+        <p>Dados simulados para consultar indicadores, canais e pedidos.</p>
       </div>
 
       <div className="side-foot">
